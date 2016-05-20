@@ -28,9 +28,7 @@ cols = [4, 3, 2] #columns pins
 rows = [10, 22, 27, 17] # rows pins
 
 current_value = ""
-value_detected = None
 
-#setting all pins to pull down
 for col in cols:
 	pi.set_mode(col, pigpio.INPUT)
 	pi.set_pull_up_down(col, pigpio.PUD_UP)
