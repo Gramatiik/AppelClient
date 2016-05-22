@@ -20,8 +20,6 @@ Functions definition
 def verifInput(userInput):
 	"Checks if given string is a number between 0 and 99"
 	if userInput.isdigit() and len(userInput) <= 2:
-		if int(userInput) <= 9:
-			userInput = userInput.zfill(2) # number must be 2 chars in length
 		return True;
 	else:
 		return False;
@@ -79,6 +77,9 @@ while 1:
 					
 					if tch == "10": # valid button pressed
 						if current_value != "" and verifInput(current_value):
+
+							if int(current_value) <= 9:
+								current_value = current_value.zfill(2) # number must be 2 chars in length
 								
 							print "Sending  ! your value is {0}".format(current_value)
 							sendToPuck(current_value)
