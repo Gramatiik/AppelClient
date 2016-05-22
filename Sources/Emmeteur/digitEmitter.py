@@ -32,7 +32,7 @@ def toDigit(index_col, index_row):
 	digit = 3 * index_row + 1 #minimum number for row
 	return str(digit + index_col) # add column number to get the right digit
 
-def sentToPuck(number_str):
+def sendToPuck(number_str):
 	"Sends a call to the given number"
 	for x in range(0,5):
 		while not tx.ready():
