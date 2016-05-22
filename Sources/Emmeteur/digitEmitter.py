@@ -20,20 +20,30 @@ Functions definition
 def verifInput(str):
 	"Checks if given string is a number between 0 and 99"
 	if str.isdigit() and len(str) <= 2:
+		if int(str) <= 9:
+			current_value = current_value.zfill(2) # number must be 2 chars in length
 		return True;
 	else:
 		return False;
 
 def toDigit(index_col, index_row):
-	"Converts the row and column to the physical digit number"
+	"Converts the row and column to the physical digit number and returns it in string"
 	digit = None
 	digit = 3 * index_row + 1 #minimum number for row
-	return digit + index_col # add column number to get the right digit
+	return str(digit + index_col) # add column number to get the right digit
+
+def sentToPuck(number_str):
+	"Sends a call to the given number"
+	for x in range(0,5):
+		while not tx.ready():
+			time.sleep(0.1)
+		time.sleep(0.1)
+		tx.put("SB"+number_str+"F")
+	print "\t\tDone !"
 
 """
 Variable initialization
 """
-
 TX  = 25 # RF data emitter GPIO pin
 BPS = 1000 # bauds speed
 pi  = pigpio.pi()
@@ -53,6 +63,9 @@ for row in rows:
 	pi.set_mode(row, pigpio.OUTPUT)
 	pi.write(row, 0)
 
+"""
+Core script
+"""
 while 1:
 	for col in enumerate(cols):
 		if pi.read(col[1]) == 0:
@@ -62,22 +75,14 @@ while 1:
 				time.sleep(0.005) # small sleeps between transition
 				
 				if pi.read(col[1]) == 1:
-					#print "button pressed on col {0} and row {1}".format(col[1], row[1]) #display pins for row and column pressed
-					tch = str(toDigit(col[0], row[0]))
+					tch = toDigit(col[0], row[0]) # last pressed digit
 					
 					if tch == "10": # valid button pressed
 						if current_value != "" and verifInput(current_value):
-							if int(current_value) <= 9:
-								current_value = current_value.zfill(2) # pour que le nombre fasse toujours 2 caracteres
-							
+								
 							print "Sending  ! your value is {0}".format(current_value)
+							sendToPuck(current_value)
 
-							for x in range(0,5):
-								while not tx.ready():
-									time.sleep(0.1)
-								time.sleep(0.1)
-								tx.put("SB"+current_value+"F")
-								print "\t\tAttempt {}".format(x)
 						else:
 							print "Veuillez entrer un nombre valide..."
 						
