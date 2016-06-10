@@ -85,7 +85,7 @@ while 1:
 							sendToPuck(current_value)
 
 						else:
-							print "Veuillez entrer un nombre valide..."
+							print "Please enter a valid number..."
 						
 						current_value = "" # reset value after validating it
 					

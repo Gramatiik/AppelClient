@@ -25,7 +25,7 @@ void loop()
         numTrame = String((char)buf[2]);
         numTrame += (char)buf[3];
         
-        if(numTrame == NUMPALET) //ciorrespond-t-elle a mon ID ?
+        if(numTrame == NUMPALET) //correspond-t-elle a mon ID ?
         {
           Signal();
           delay(DELAY * 1000); // temps de desactivation
