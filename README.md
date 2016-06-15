@@ -42,7 +42,7 @@ Prototype de la carte de réception (ici sans module pour la batterie) :
 ![Prototype Recepteur](Images/recep.png)
 
 Circuit final de la carte de réception (sans module de batterie):
-![Circuit Final Recepteur](Images/recep_circuit)
+![Circuit Final Recepteur](Images/recep_circuit.png)
 
 Version finale du récepteur dans la boîte :
 ![Recepteur Boite](Images/recep_boite.png)  
