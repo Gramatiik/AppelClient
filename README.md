@@ -49,4 +49,6 @@ Circuit final de la carte de réception (sans module de batterie):
 
 Version finale du récepteur dans la boîte :
 
-![Recepteur Boite](Images/recep_boite.png)  
+![Recepteur Boite](Images/recep_final.png)
+
+![Recepteur Boite2](Images/recep_final2.png)
