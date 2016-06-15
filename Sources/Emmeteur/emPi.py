@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: latin-1 -*-
+
+"""
+SCRIPT D'ENVOIE DE MESSAGE EN LIGNE DE COMMANDE PAR ARGUMENT
+"""
+
 import time, pigpio, vw, os, sys
 
 def usage():
@@ -32,7 +37,7 @@ if len(sys.argv) == 2:
             time.sleep(0.1)
          time.sleep(0.1)
          tx.put("SB"+objStr+"F")
-         print "\t\tAttempt {}".format(x)
+         print "\t\tEssai {}".format(x)
    else:
       print "veuillez entrer un nombre valide..."
 else:

@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: latin-1 -*-
 
+"""
+SCRIPT D'ENVOIE DE MESSAGE EN LIGNE DE COMMANDE INTERACTIVE
+"""
+
 import time
 
 import pigpio

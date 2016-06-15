@@ -18,37 +18,38 @@ import time, pigpio, vw, os, sys
 Functions definition
 """
 def verifInput(userInput):
-	"Checks if given string is a number between 0 and 99"
+	"Verifie si la chaine donnée est un nombre compris entre 0 et 99"
 	if userInput.isdigit() and len(userInput) <= 2:
 		return True;
 	else:
 		return False;
 
 def toDigit(index_col, index_row):
-	"Converts the row and column to the physical digit number and returns it in string"
+	"Convertit le tuple (ligne, colone) du clavier numerique en nombre et le retourne en string "
 	digit = None
-	digit = 3 * index_row + 1 #minimum number for row
-	return str(digit + index_col) # add column number to get the right digit
+	digit = 3 * index_row + 1 # nombre minimum pour la ligne
+	return str(digit + index_col) # ajouter le numero de la colone pour obtenir le nombre
 
 def sendToPuck(number_str):
-	"Sends a call to the given number"
+	"Envoie un message au palet numero 'number_str'"
 	for x in range(0,5):
 		while not tx.ready():
 			time.sleep(0.1)
 		time.sleep(0.1)
 		tx.put("SB"+number_str+"F")
-	print "\t\tDone !"
+	print "\t\tTerminé !"
 
 """
-Variable initialization
+Initialisation des variables
 """
-TX  = 25 # RF data emitter GPIO pin
-BPS = 1000 # bauds speed
+TX  = 25 # pin GPIO data emetteur RF
+BPS = 1000 # vitesse en bauds
 pi  = pigpio.pi()
 tx  = vw.tx(pi, TX, BPS)
 
-cols = [4, 3, 2] #columns pins
-rows = [10, 22, 27, 17] # rows pins
+#pins pour le clavier numerique
+cols = [4, 3, 2] #pins colones
+rows = [10, 22, 27, 17] # pins lignes
 
 current_value = ""
 
@@ -62,7 +63,7 @@ for row in rows:
 	pi.write(row, 0)
 
 """
-Core script
+Script principal
 """
 while 1:
 	for col in enumerate(cols):
@@ -70,35 +71,35 @@ while 1:
 			for row in enumerate(rows):
 				
 				pi.write(row[1], 1)
-				time.sleep(0.005) # small sleeps between transition
+				time.sleep(0.005) # petit interval entre chaque tranqition
 				
 				if pi.read(col[1]) == 1:
-					tch = toDigit(col[0], row[0]) # last pressed digit
+					tch = toDigit(col[0], row[0]) # dernier digit appuyé
 					
-					if tch == "10": # valid button pressed
+					if tch == "10": # touche validé "*" appuyée
 						if current_value != "" and verifInput(current_value):
 
 							if int(current_value) <= 9:
-								current_value = current_value.zfill(2) # number must be 2 chars in length
+								current_value = current_value.zfill(2) # le nombre doit faire 2 caractères
 								
 							print "Sending  ! your value is {0}".format(current_value)
 							sendToPuck(current_value)
 
 						else:
-							print "Please enter a valid number..."
+							print "Veuillez entrer un nombre valide..."
 						
-						current_value = "" # reset value after validating it
+						current_value = "" # remise à zero de la valeur actuelle après envoie
 					
-					elif tch == "12": # reset button pressed	
+					elif tch == "12": # appuie sur le bouton reset "#"
 						current_value = ""
 					
-					elif tch == "11": # 0 digit pressed
+					elif tch == "11": # appuie sur la touche "0"
 						current_value = current_value + "0"
 					
 					else:
 						current_value = current_value + tch
 
 				pi.write(row[1], 0)
-				time.sleep(0.005) # small sleeps between transition
+				time.sleep(0.005) # petit interval entre les transitions
 			
-			time.sleep(0.2) #wait between two inputs
+			time.sleep(0.2) #temps minimum entre 2 appue (pour eviter les repetitions)
