@@ -30,6 +30,7 @@ le reste du programme est en python.
 L'émetteur est alimenté en 12V DC afin de fournir la tension maximale pour le module d'antenne puis cette tension est abaissée et régulée à 5V afin de fournir une alimentation à la carte Raspberry Pi. Cette carte est aussi équipée d'un clavier numérique et d'un dongle wifi pour un accès en SSH. (Un accès en série est également possible).
 
 Premier prototype de l'emmeteur :
+
 ![Prototype Emmeteur](Images/emit.png)
 
 Ce prototype est pour l'instant le seul emmeteur réalisé, il est prévu de faire une version améliorée de celui-ci qui sera imprimée en 3D.
@@ -39,10 +40,13 @@ Ce prototype est pour l'instant le seul emmeteur réalisé, il est prévu de fai
 Ce récepteur est composé d'un carte Arduino Pro Mini, d'un step-up pour batterie LiPo (qui fait aussi chargement USB), d'une batterie LiPo (2200mAh ici), et d'une carte qui gère la vibration, une LED pour un signal visuel et le module de réception 433Mhz. Le tout est mis dans une boite en bois (qui sert normalement à contenir un jeu de cartes).
 
 Prototype de la carte de réception (ici sans module pour la batterie) :
+
 ![Prototype Recepteur](Images/recep.png)
 
 Circuit final de la carte de réception (sans module de batterie):
+
 ![Circuit Final Recepteur](Images/recep_circuit.png)
 
 Version finale du récepteur dans la boîte :
+
 ![Recepteur Boite](Images/recep_boite.png)  
