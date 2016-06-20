@@ -18,9 +18,9 @@ void Signal()
   for(int i=0; i<20; i++)
   {
     digitalWrite(PINLED, HIGH);
-    delay(50);
+    delay(100);
     digitalWrite(PINLED, LOW);
-    delay(50);
+    delay(100);
   }
   digitalWrite(PINVIBRO, LOW);
 }
