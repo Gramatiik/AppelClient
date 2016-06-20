@@ -7,7 +7,7 @@ Ce projet à pour but de simplifier les files d'attente en permettant personnes 
 ## Origine du projet
 
 J'ai commencé ce projet en mars 2016 lorsqu'un restaurateur me demande comment il pourrait gérer sa file d'attente intelligement et avec les moyens d'aujourd'hui.
-Je me suis inspiré d'un produit déjà existant depuis quelques années qui arrive timidement en France, un système d'appel de Client nommé **MMCALL**.
+Je me suis inspiré d'un produit déjà existant depuis quelques années qui arrive timidement en France, un système d'appel de Client produit par la société **MMCALL**.
 
 Le problème est que ce produit n'est pas open-source et qu'il coûte relativement cher. C'est pourquoi j'ai proposé de réaliser moi-même une **alternative** qui proposerait les même fonctionnalités mais en êtant **open-source et en utilisant des composants à bas prix**.
 
